@@ -1,0 +1,13 @@
+.book {
+    width: 400px;
+    padding: 10px;
+    border: solid 2px;
+    text-align: center;
+    border-radius: 3px;
+}
+.book > p {
+    margin: 0;
+}
+.book > img {
+    width: 100px;
+}
