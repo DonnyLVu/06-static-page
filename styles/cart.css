@@ -1,0 +1,14 @@
+table {
+    border: solid 3px green;
+    background-color: lightgray;
+}
+tr {
+    text-align: center;
+    margin: 2px;
+    padding: 2px blue;
+}
+th, tr {
+    width: 20%;
+    border: solid 3px blue;
+    text-align: center;
+}
