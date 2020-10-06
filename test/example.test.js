@@ -1,5 +1,6 @@
 // IMPORT MODULES under test here:
-import { renderBook } from '../utils.js';
+import { renderBook, findById } from '../utils.js';
+import { books } from '../books.js';
 
 // id: 'callOfFive',
 // title: 'Call of Five',
@@ -29,4 +30,27 @@ test('Renders call of five', (expect) => {
     //Expect
     // Make assertions about what is expected versus the actual result
     expect.equal(actual.outerHTML, expected);
+});
+
+test('function will take in an array and an id and return the object with that id', (expect) => {
+    //Arrange
+    // Set up your arguments and expectations
+    const theId = 'callOfFive'
+    const expected = {
+        id: 'callOfFive',
+        title: 'Call of Five',
+        author: 'Donya Donson',
+        cover: 'Call of 5.png',
+        price: 99,
+        category : 'Action',
+        description: 'Extreme Counting to Five',
+    };
+    
+    //Act 
+    // Call the function you're testing and set the result to a const
+    const actual = findById(books, theId);
+
+    //Expect
+    // Make assertions about what is expected versus the actual result
+    expect.deepEqual(actual, expected);
 });
