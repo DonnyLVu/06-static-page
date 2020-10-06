@@ -48,3 +48,17 @@ export const books = [
         description: 'There\'s a girl in a house',
     },
 ];
+
+const cart = [{
+    id: 'callOfFive',
+    quantity: 10
+}, {
+    id: 'spiceAndNice',
+    quantity: 6
+}, {
+    id: 'unleashTheOath',
+    quantity: 3
+}, {
+    id: 'theJumpingBone',
+    quantity: 12
+}];

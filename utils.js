@@ -1,3 +1,6 @@
+
+
+// RENDER BOOK
 export function renderBook(book) {
     
     const li = document.createElement('li');
@@ -42,3 +45,12 @@ export function renderBook(book) {
     return li;
 }
 
+// FIND BY ID
+export function findById(theArray, theId) {
+    for (let i = 0; i < theArray.length; i++) {
+        const item = theArray[i];
+        if (item.id === theId) {
+            return item;
+        }
+    }
+}
