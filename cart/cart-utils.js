@@ -17,6 +17,5 @@ export function calcOrderTotal(cartArray) {
         // add that subtotal to the accumulator
         accumulator = accumulator + subtotal;
     }
-
     return accumulator;
 }

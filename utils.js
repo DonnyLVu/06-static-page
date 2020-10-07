@@ -61,3 +61,16 @@ export function calcLineItem(quantity, price) {
 
     return subTotal.toFixed(2);
 }
+
+export function calcOrderTotal(cartArray, bookArray) {
+
+    let accumulator = 0;
+
+    for (let i = 0; i < cartArray.length; i++) {
+        const theBook = cartArray[i];
+        const actBook = findById(bookArray, theBook.id);
+        const finalTotal = actBook.price * theBook.quantity;
+        accumulator = accumulator + finalTotal;
+    }
+    return accumulator;
+}
