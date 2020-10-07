@@ -1,3 +1,6 @@
+
+
+// RENDER BOOK
 export function renderBook(book) {
     
     const li = document.createElement('li');
@@ -40,4 +43,34 @@ export function renderBook(book) {
     li.appendChild(button);
 
     return li;
+}
+
+// FIND BY ID
+export function findById(theArray, theId) {
+    for (let i = 0; i < theArray.length; i++) {
+        const item = theArray[i];
+        if (item.id === theId) {
+            return item;
+        }
+    }
+}
+
+// Calclineitem
+export function calcLineItem(quantity, price) {
+    const subTotal = quantity * price;
+
+    return subTotal.toFixed(2);
+}
+
+export function calcOrderTotal(cartArray, bookArray) {
+
+    let accumulator = 0;
+
+    for (let i = 0; i < cartArray.length; i++) {
+        const theBook = cartArray[i];
+        const actBook = findById(bookArray, theBook.id);
+        const finalTotal = actBook.price * theBook.quantity;
+        accumulator = accumulator + finalTotal;
+    }
+    return accumulator;
 }
