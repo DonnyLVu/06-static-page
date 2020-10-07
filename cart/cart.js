@@ -1,3 +1,7 @@
+
+import { renderLineItems } from './render-line-items.js';
+
+
 export const myCart = [
     {
         id: 'callOfFive',
@@ -12,3 +16,11 @@ export const myCart = [
         quantity: 1
     }
 ];
+const table = document.querySelector('tbody');
+
+
+for (let i = 0; i < myCart.length; i++) {
+    const myBook = myCart[i];
+    const tr = renderLineItems(myBook);
+    table.appendChild(tr);
+}

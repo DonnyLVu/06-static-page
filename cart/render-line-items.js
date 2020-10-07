@@ -1,10 +1,10 @@
-import { books as sourceOfTruth } from './books.js';
-import { findById } from './utils.js';
+import { books as sourceOfTruth } from '../books.js';
+import { findById } from '../utils.js';
 
 
 
 // RENDER TABLE ROW
-export function renderTableRow(cartItem) {
+export function renderLineItems(cartItem) {
     const tr = document.createElement('tr');
     const tdName = document.createElement('td');
     const tdPrice = document.createElement('td');
