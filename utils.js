@@ -54,3 +54,10 @@ export function findById(theArray, theId) {
         }
     }
 }
+
+// Calclineitem
+export function calcLineItem(quantity, price) {
+    const subTotal = quantity * price;
+
+    return subTotal.toFixed(2);
+}
