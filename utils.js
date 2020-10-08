@@ -1,4 +1,5 @@
 
+export const CART = 'CART';
 
 // RENDER BOOK
 export function renderBook(book) {
@@ -10,7 +11,8 @@ export function renderBook(book) {
     const price = document.createElement('p');
     const category = document.createElement('p');
     const description = document.createElement('p');
-    const button = document.createElement('button');
+    const addButton = document.createElement('button');
+    const removeButton = document.createElement('button');
 
     li.classList.add('book');
 
@@ -38,11 +40,63 @@ export function renderBook(book) {
     category.textContent = `${book.category}`;
     li.appendChild(category);
 
-    button.textContent = 'Add to cart';
+    
 
-    li.appendChild(button);
+    
+    
+    addButton.addEventListener('click', () => {
+        const cart = getLocalCart(CART) || [];
+        const itemInCart = findById(cart, book.id);
+        console.log('added', book.id);
 
+        if (itemInCart === undefined){
+            const newCartItem = {
+                id: book.id,
+                quantity: 1,
+            };
+            cart.push(newCartItem);
+        } else {
+            itemInCart.quantity++;
+        }
+
+        setLocalCart(CART, cart);
+    });
+
+
+    removeButton.addEventListener('click', () =>{
+        const cart = getLocalCart(CART) || [];
+        const itemInCart = findById(cart, book.id);
+        console.log('removed', book.id);
+        if (itemInCart){
+            if (itemInCart.quantity !== 0){
+                itemInCart.quantity--;
+            }
+        }
+        setLocalCart(CART, cart);
+    });
+    
+    li.appendChild(addButton);
+    addButton.textContent = 'Add to cart';
+    li.appendChild(removeButton);
+    removeButton.textContent = 'Remove from cart';
     return li;
+}
+
+export function getLocalCart(key) {
+    if (key) {
+        return JSON.parse(localStorage.getItem(key));
+    } else {
+        return [];
+        // this isn't a correct fix for the "fall-back"
+    }
+}
+
+
+function setLocalCart(key, value) {
+    const stringyKey = JSON.stringify(value);
+    localStorage.setItem(key, stringyKey);
+
+    return stringyKey;
 }
 
 // FIND BY ID
@@ -54,6 +108,7 @@ export function findById(theArray, theId) {
         }
     }
 }
+
 
 // Calclineitem
 export function calcLineItem(quantity, price) {
