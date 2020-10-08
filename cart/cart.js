@@ -1,7 +1,7 @@
 
 import { renderLineItems } from './render-line-items.js';
 import { books } from '../books.js';
-import { calcOrderTotal, CART } from '../utils.js';
+import { calcOrderTotal } from '../utils.js';
 import { getLocalCart } from '../utils.js';
 
 
@@ -52,9 +52,9 @@ orderButton.addEventListener('click', () => {
     const stringyCart = JSON.stringify(myCart, true, 2);
 
     if (myCart.length) {
-        alert('Your order => :' + stringyCart);
+        alert('You have ordered => :' + stringyCart);
         localStorage.removeItem('CART');
-        window.location.href = '../';
+        window.location.href = './';
         console.log('Cart should be empty');
         
     } else {
