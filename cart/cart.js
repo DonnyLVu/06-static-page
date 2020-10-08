@@ -1,7 +1,7 @@
 
 import { renderLineItems } from './render-line-items.js';
 import { books } from '../books.js';
-import { calcOrderTotal } from '../utils.js';
+import { calcOrderTotal, CART } from '../utils.js';
 import { getLocalCart } from '../utils.js';
 
 
@@ -40,3 +40,26 @@ if (theCartTotal){
 
 console.log(orderTotal);
 theCartTotal.textContent = `$${orderTotal}`;
+
+
+
+
+
+const orderButton = document.querySelector('button');
+
+orderButton.addEventListener('click', () => {
+
+    const stringyCart = JSON.stringify(myCart, true, 2);
+
+    if (myCart.length) {
+        alert('Your order => :' + stringyCart);
+        localStorage.removeItem('CART');
+        window.location.href = '../';
+        console.log('Cart should be empty');
+        
+    } else {
+        orderButton.disabled = true;
+        alert('Why are you trying to buy an empty cart? You weirdo.');
+        console.log('user did not purchase any fake books');
+    }
+});
