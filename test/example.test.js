@@ -70,3 +70,6 @@ test('This function takes a quantity and price, and it multiples them to find th
     // Make assertions about what is expected versus the actual result
     expect.equal(actual, expected);
 });
+
+// Create tests from old and new
+

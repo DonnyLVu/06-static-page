@@ -1,5 +1,8 @@
 
 export const CART = 'CART';
+export const PRODUCTS = 'PRODUCTS';
+import { books as hardCodedBooks } from './books.js';
+
 
 // RENDER BOOK
 export function renderBook(book) {
@@ -47,7 +50,7 @@ export function renderBook(book) {
     addButton.addEventListener('click', () => {
         const cart = getLocalCart(CART) || [];
         const itemInCart = findById(cart, book.id);
-        console.log('added', book.id);
+        // console.log('added', book.id);
 
         if (itemInCart === undefined){
             const newCartItem = {
@@ -66,7 +69,7 @@ export function renderBook(book) {
     removeButton.addEventListener('click', () =>{
         const cart = getLocalCart(CART) || [];
         const itemInCart = findById(cart, book.id);
-        console.log('removed', book.id);
+        // console.log('removed', book.id);
         if (itemInCart){
             if (itemInCart.quantity !== 0){
                 itemInCart.quantity--;
@@ -92,7 +95,7 @@ export function getLocalCart(key) {
 }
 
 
-function setLocalCart(key, value) {
+export function setLocalCart(key, value) {
     const stringyKey = JSON.stringify(value);
     localStorage.setItem(key, stringyKey);
 
@@ -110,7 +113,7 @@ export function findById(theArray, theId) {
 }
 
 
-// Calclineitem
+// CalcLineItem
 export function calcLineItem(quantity, price) {
     const subTotal = quantity * price;
 
@@ -128,4 +131,43 @@ export function calcOrderTotal(cartArray, bookArray) {
         accumulator = accumulator + finalTotal;
     }
     return accumulator;
+}
+
+// localStorage For books
+
+export function getLocalStorageBooks() {
+
+    
+    let localStorageBooks = JSON.parse(localStorage.getItem(PRODUCTS));
+    if (!localStorageBooks) {
+        const stringyBooks = JSON.stringify(hardCodedBooks);
+        localStorage.setItem(PRODUCTS, stringyBooks);
+        localStorageBooks = hardCodedBooks;
+    }
+
+    return localStorageBooks;
+}
+
+
+// SEED STUFF
+export function seedAndGetProducts() {
+    let seed = (getLocalCart(PRODUCTS));
+    if (!seed) {
+        const hardStringySeed = JSON.stringify(hardCodedBooks);
+        localStorage.setItem(PRODUCTS, hardStringySeed);
+        seed = hardCodedBooks;
+    }
+    return seed;
+
+}
+
+export function addProduct(newBook) {
+
+    const localStorageBooks = seedAndGetProducts();
+
+    localStorageBooks.push(newBook);
+
+    const stringyAddProduct = JSON.stringify(localStorageBooks);
+
+    localStorage.setItem(PRODUCTS, stringyAddProduct);
 }
