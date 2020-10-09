@@ -1,0 +1,15 @@
+.centerInputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 200px;
+    margin: 20px;
+    text-align: start;
+    align-items: flex-start;
+}
+
+button{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
